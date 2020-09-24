@@ -23,29 +23,27 @@ namespace CSECodeSampleConsole
 
     public class Program
     {
-        public static List<Person> People = new List<Person>();
+        private static List<Person> _People = new List<Person>();
 
         public static void Main(string[] args)
         {
             bool q = true;
             while (q == true) {
+
                 Console.WriteLine("Type 1 to view person");
                 Console.WriteLine("Type 2 to add person");
-                Console.WriteLine("Type 3 to exit");
+                Console.WriteLine("Type 3 to search person");
+                Console.WriteLine("Type 4 to exit");
                 Console.WriteLine(" ");
 
                 int input;
                 bool parsedSuccess = int.TryParse(Console.ReadLine(), out input);
-                if (parsedSuccess == false || input < 1 || input > 3)
-                {
-                    Console.WriteLine("Please enter a number between 1 and 3\n");
-                }
 
-                if (input == 1) ViewPerson(People);
-
-                if (input == 2) NewPerson(People);
-
-                if (input == 3) q = false;
+                if (parsedSuccess == false || input < 1 || input > 4) Console.WriteLine("Please enter a number between 1 and 4\n");
+                if (input == 1) ViewPerson(_People);
+                if (input == 2) { Person person = new Person(Person.NewName(),Person.NewId()); _People.Add(person); }
+                if (input == 3) FindPerson(_People);
+                if (input == 4) q = false;
             }
         }
 
@@ -62,37 +60,56 @@ namespace CSECodeSampleConsole
             Console.WriteLine(" ");
         }
 
-        public static void NewPerson(List<Person> names)
+        public static void FindPerson(List<Person> names)
         {
-            Console.WriteLine("you chose new person \n");
-            Console.Write("Person's name?: ");
-            string Name = Console.ReadLine();
-            int Id = CreateId();
-            names.Add(new Person(Name, Id));
-            Console.WriteLine("\n");
-        }
+            Console.WriteLine("Insert the name of the person you wish to find: ");
+            string result = Console.ReadLine();
+            foreach (var item in names)
+            {
+                if(result == item.Name)
+                {
+                    Console.Write("Name: ");
+                    Console.Write(item.Name);
+                    Console.Write(" Id: ");
+                    Console.WriteLine(item.Id + "\n");
+                }
 
-        public static int CreateId()
-        {
-            // Creates an initial ID from DateTime, adds the first and last 3 characters, converts from hex to int and returns id
-            string initialId = DateTime.Now.Ticks.ToString("x");
-            string hexId = initialId.Substring(0, 3) + initialId.Substring(initialId.Length - 3);
-            int idNumber = Int32.Parse(hexId, System.Globalization.NumberStyles.HexNumber);
-            return idNumber;
-        }
+                if (result != item.Name) Console.WriteLine("Person not found :(, Person either doesnt exist or try all lower case!");
+            }
 
+        }
     }
+
 
 
     public class Person
     {
-        public int Id { get; set; }
         public string Name { get; set; }
+        public int Id { get; set; }
 
         public Person(string Name, int Id)
         {
             this.Name = Name;
             this.Id = Id;
+        }
+
+        public static string NewName()
+        {
+            // Reads in name from user input and returns Name
+            Console.WriteLine("you chose new person \n");
+            Console.Write("Person's name?: ");
+            string Name = Console.ReadLine();
+            Console.WriteLine("\n");
+            return Name;
+        }
+
+        public static int NewId()
+        {
+            // Creates an initial ID from DateTime, adds the first and last 3 characters, converts from hex to int, and returns id
+            string initialId = DateTime.Now.Ticks.ToString("x");
+            string hexId = initialId.Substring(0, 3) + initialId.Substring(initialId.Length - 3);
+            int Id = Int32.Parse(hexId, System.Globalization.NumberStyles.HexNumber);
+            return Id;
         }
     }
 }
