@@ -1,0 +1,13 @@
+C:\Users\Zach\source\repos\CSE_APP\CSE_APP\bin\Debug\netcoreapp3.1\CSE_APP.exe
+C:\Users\Zach\source\repos\CSE_APP\CSE_APP\bin\Debug\netcoreapp3.1\CSE_APP.deps.json
+C:\Users\Zach\source\repos\CSE_APP\CSE_APP\bin\Debug\netcoreapp3.1\CSE_APP.runtimeconfig.json
+C:\Users\Zach\source\repos\CSE_APP\CSE_APP\bin\Debug\netcoreapp3.1\CSE_APP.runtimeconfig.dev.json
+C:\Users\Zach\source\repos\CSE_APP\CSE_APP\bin\Debug\netcoreapp3.1\CSE_APP.dll
+C:\Users\Zach\source\repos\CSE_APP\CSE_APP\bin\Debug\netcoreapp3.1\CSE_APP.pdb
+C:\Users\Zach\source\repos\CSE_APP\CSE_APP\obj\Debug\netcoreapp3.1\CSE_APP.AssemblyInfoInputs.cache
+C:\Users\Zach\source\repos\CSE_APP\CSE_APP\obj\Debug\netcoreapp3.1\CSE_APP.AssemblyInfo.cs
+C:\Users\Zach\source\repos\CSE_APP\CSE_APP\obj\Debug\netcoreapp3.1\CSE_APP.csproj.CoreCompileInputs.cache
+C:\Users\Zach\source\repos\CSE_APP\CSE_APP\obj\Debug\netcoreapp3.1\CSE_APP.dll
+C:\Users\Zach\source\repos\CSE_APP\CSE_APP\obj\Debug\netcoreapp3.1\CSE_APP.pdb
+C:\Users\Zach\source\repos\CSE_APP\CSE_APP\obj\Debug\netcoreapp3.1\CSE_APP.genruntimeconfig.cache
+C:\Users\Zach\source\repos\CSE_APP\CSE_APP\obj\Debug\netcoreapp3.1\CSE_APP.csprojAssemblyReference.cache
