@@ -30,6 +30,7 @@ namespace CSECodeSampleConsole
             bool q = true;
             while (q == true) {
 
+                Console.WriteLine(" ");
                 Console.WriteLine("Type 1 to view person");
                 Console.WriteLine("Type 2 to add person");
                 Console.WriteLine("Type 3 to search person");
@@ -38,18 +39,24 @@ namespace CSECodeSampleConsole
 
                 int input;
                 bool parsedSuccess = int.TryParse(Console.ReadLine(), out input);
+                Console.WriteLine(" ");
 
                 if (parsedSuccess == false || input < 1 || input > 4) Console.WriteLine("Please enter a number between 1 and 4\n");
-                if (input == 1) ViewPerson(_People);
+                if (input == 1) { PersonSearcher.ViewPerson(_People); }
                 if (input == 2) { Person person = new Person(Person.NewName(),Person.NewId()); _People.Add(person); }
-                if (input == 3) FindPerson(_People);
+                if (input == 3) { PersonSearcher search = new PersonSearcher(); PersonSearcher.FindPerson(_People); }
                 if (input == 4) q = false;
             }
         }
 
+
+    }
+
+    public class PersonSearcher
+    {
+
         public static void ViewPerson(List<Person> names)
         {
-            Console.WriteLine("you chose view person \n");
             foreach (var item in names)
             {
                 Console.Write("Name: ");
@@ -62,22 +69,30 @@ namespace CSECodeSampleConsole
 
         public static void FindPerson(List<Person> names)
         {
-            Console.WriteLine("Insert the name of the person you wish to find: ");
-            string result = Console.ReadLine();
+            Console.Write("Insert the name of the person you wish to find: ");
+            string result = Console.ReadLine().ToLower();
+            Console.WriteLine(" ");
+            bool trueSearch = false;
+
             foreach (var item in names)
             {
-                if(result == item.Name)
+                if (result == item.Name)
                 {
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Person found!");
+                    Console.WriteLine(" ");
                     Console.Write("Name: ");
                     Console.Write(item.Name);
                     Console.Write(" Id: ");
                     Console.WriteLine(item.Id + "\n");
+                    trueSearch = true;
                 }
-
-                if (result != item.Name) Console.WriteLine("Person not found :(, Person either doesnt exist or try all lower case!");
             }
 
+            if (trueSearch == false) Console.WriteLine("Person not found :(");
+
         }
+
     }
 
 
@@ -96,10 +111,9 @@ namespace CSECodeSampleConsole
         public static string NewName()
         {
             // Reads in name from user input and returns Name
-            Console.WriteLine("you chose new person \n");
             Console.Write("Person's name?: ");
-            string Name = Console.ReadLine();
-            Console.WriteLine("\n");
+            string Name = Console.ReadLine().ToLower();
+            Console.WriteLine(" ");
             return Name;
         }
 
