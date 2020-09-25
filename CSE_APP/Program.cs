@@ -23,12 +23,12 @@ namespace CSECodeSampleConsole
 
     public class Program
     {
-        private static List<Person> _People = new List<Person>();
+        private static List<Person> _people = new List<Person>();
 
         public static void Main(string[] args)
         {
-            bool q = true;
-            while (q == true) {
+            bool isOn = true;
+            while (isOn == true) {
 
                 Console.WriteLine(" ");
                 Console.WriteLine("Type 1 to view person");
@@ -38,22 +38,40 @@ namespace CSECodeSampleConsole
                 Console.WriteLine(" ");
 
                 int input;
+                Console.Write("Input: ");
                 bool parsedSuccess = int.TryParse(Console.ReadLine(), out input);
-                Console.WriteLine(" ");
 
-                if (parsedSuccess == false || input < 1 || input > 4) Console.WriteLine("Please enter a number between 1 and 4\n");
-                if (input == 1) { PersonSearcher.ViewPerson(_People); }
-                if (input == 2) { Person person = new Person(Person.NewName(),Person.NewId()); _People.Add(person); }
-                if (input == 3) { PersonSearcher search = new PersonSearcher(); PersonSearcher.FindPerson(_People); }
-                if (input == 4) q = false;
+                if (parsedSuccess == false || input < 1 || input > 4)
+                {
+                    Console.WriteLine("Please enter a number between 1 and 4\n");
+                }
+                if (input == 1) 
+                { 
+                    PersonSearcher.ViewPerson(_people); 
+                }
+                if (input == 2) 
+                { 
+                    Person person = new Person(Person.NewName(),Person.NewId()); 
+                    _people.Add(person); 
+                }
+                if (input == 3) 
+                { 
+                    PersonSearcher search = new PersonSearcher();
+                    PersonSearcher.SearchPerson(_people); 
+                }
+                if (input == 4)
+                {
+                    isOn = false;
+                }
             }
         }
-
-
     }
 
     public class PersonSearcher
     {
+        string SearchedFor{ get; set; }
+        string Name { get; set; }
+        int Id { get; set; }
 
         public static void ViewPerson(List<Person> names)
         {
@@ -67,16 +85,16 @@ namespace CSECodeSampleConsole
             Console.WriteLine(" ");
         }
 
-        public static void FindPerson(List<Person> names)
+        public static void SearchPerson(List<Person> names)
         {
             Console.Write("Insert the name of the person you wish to find: ");
-            string result = Console.ReadLine().ToLower();
+            string searchFor = Console.ReadLine().ToLower();
             Console.WriteLine(" ");
-            bool trueSearch = false;
+            bool found = false;
 
             foreach (var item in names)
             {
-                if (result == item.Name)
+                if (searchFor == item.Name)
                 {
                     Console.WriteLine(" ");
                     Console.WriteLine("Person found!");
@@ -85,14 +103,15 @@ namespace CSECodeSampleConsole
                     Console.Write(item.Name);
                     Console.Write(" Id: ");
                     Console.WriteLine(item.Id + "\n");
-                    trueSearch = true;
+                    found = true;
                 }
             }
 
-            if (trueSearch == false) Console.WriteLine("Person not found :(");
-
+            if (found == false)
+            {
+                Console.WriteLine("Person not found :(");
+            }
         }
-
     }
 
 
